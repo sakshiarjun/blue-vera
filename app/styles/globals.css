@@ -1,0 +1,34 @@
+:root {
+  --blue: #2a3376;
+  --beige: #fffdef;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  background: var(--blue);
+  color: var(--beige);
+  font-family: "Inter", sans-serif;
+  scroll-behavior: smooth;
+}
+
+section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem;
+}
+
+h1 {
+  font-size: 4rem;
+  letter-spacing: -1px;
+}
+
+p {
+  opacity: 0.8;
+}
