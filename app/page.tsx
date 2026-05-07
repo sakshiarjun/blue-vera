@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import LocomotiveScroll from "locomotive-scroll";
 import "locomotive-scroll/dist/locomotive-scroll.css"; // Import styles
 
@@ -14,20 +14,25 @@ import Statement from "./components/Statement";
 import Footer from "./components/Footer";
 
 export default function Home() {
-  useEffect(() => {
-    const scroll = new LocomotiveScroll({
-      el: document.querySelector("body"), // Target the body for smooth scrolling
-      smooth: true,
-      multiplier: 1.5, // Adjust speed multiplier for faster scrolling
-    });
 
-    return () => {
-      scroll.destroy(); // Clean up LocomotiveScroll instance on unmount
-    };
-  }, []);
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+  if (!scrollRef.current) return;
+  const scroll = new LocomotiveScroll({
+    el: scrollRef.current!,
+    smooth: true,
+    multiplier: 1.2,
+  } as any ); // Cast to 'any' to bypass type issues
+
+  return () => {
+    scroll.destroy();
+  };
+}, []);
 
   return (
-    <>
+    <div data-scroll-container
+      ref={scrollRef}>
       <Navbar />
       <Hero />
       <ChaosTransition />
@@ -36,6 +41,6 @@ export default function Home() {
       <Experience />
       <Statement />
       <Footer />
-    </>
+    </div>
   );
 }
