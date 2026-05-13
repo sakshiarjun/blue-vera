@@ -254,6 +254,12 @@ export default function ProductShowcase() {
                   fontWeight: 500,
                   fontSize: "1rem",
                 }}
+                onClick={() => {
+                  const detailsSection = document.getElementById("details");
+                  if (detailsSection) {
+                    detailsSection.scrollIntoView({ behavior: "smooth" });
+                  }
+                }}
               >
                 View Details
               </motion.button>
@@ -293,7 +299,7 @@ function CanModel({
 
     // FLOATING
     meshRef.current.position.y =
-      Math.sin(t) * 0.08;
+      Math.sin(t) * 0.1;
 
     // CLICK ZOOM ROTATION
     if (isOpen) {
@@ -306,7 +312,7 @@ function CanModel({
       {/* BODY */}
       <mesh>
         <cylinderGeometry
-          args={[1, 1, 3, 128, 1, true]}
+          args={[0.6, 0.6, 2, 128, 1, true]} // Reduced top and bottom radius from 1 to 0.8
         />
 
         <meshPhysicalMaterial
@@ -320,32 +326,11 @@ function CanModel({
       </mesh>
 
       {/* TOP */}
-      <mesh
-        position={[0, 1.5, 0]}
-        rotation={[Math.PI / 2, 0, 0]}
-      >
-        <circleGeometry args={[1, 64]} />
-
-        <meshStandardMaterial
-          color="#c0c0c0"
-          metalness={1}
-          roughness={0.3}
-        />
-      </mesh>
+      
 
       {/* BOTTOM */}
-      <mesh
-        position={[0, -1.5, 0]}
-        rotation={[-Math.PI / 2, 0, 0]}
-      >
-        <circleGeometry args={[1, 64]} />
+      
 
-        <meshStandardMaterial
-          color="#c0c0c0"
-          metalness={1}
-          roughness={0.3}
-        />
-      </mesh>
     </group>
   );
 }

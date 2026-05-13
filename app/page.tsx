@@ -10,8 +10,8 @@ import ChaosTransition from "./components/ChaosTransition";
 import Philosophy from "./components/Philosophy";
 import ProductShowcase from "./components/ProductShowcase";
 import Experience from "./components/Experience";
-import Statement from "./components/Statement";
 import Footer from "./components/Footer";
+import Details from "./components/Details";
 
 export default function Home() {
 
@@ -39,7 +39,7 @@ export default function Home() {
       <Philosophy />
       <ProductShowcase />
       <Experience />
-      <Statement />
+      <Details />
       <Footer />
     </div>
   );

@@ -13,8 +13,8 @@ function CanMesh() {
 
   // Fix orientation (VERY IMPORTANT)
   texture.wrapS = texture.wrapT= THREE.RepeatWrapping;
-  //texture.repeat.x = -1; // Flip horizontally
-  //texture.offset.x = 1; // Center the texture
+  texture.repeat.x = -1; // Flip horizontally
+  texture.offset.x = 1; // Center the texture
   texture.repeat.set(1, 1);
   texture.rotation = Math.PI;
   texture.center.set(0.5, 0.5);
