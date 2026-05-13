@@ -52,3 +52,16 @@ body {
   }
 
 }
+
+@media (max-width: 768px) {
+
+  #product {
+    padding: 120px 24px !important;
+  }
+
+  #product > div {
+    flex-direction: column !important;
+    gap: 40px !important;
+  }
+
+}
