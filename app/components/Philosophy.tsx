@@ -42,6 +42,7 @@ export default function Philosophy() {
           alignItems: "center",
           justifyContent: "space-between",
           gap: "80px",
+          flexWrap: "wrap",
           position: "relative",
           zIndex: 2,
         }}
@@ -53,6 +54,7 @@ export default function Philosophy() {
             display: "flex",
             flexDirection: "column",
             gap: "24px",
+            minWidth: "300px"
           }}
         >
           <motion.h1
@@ -108,6 +110,7 @@ export default function Philosophy() {
 
         {/* Separator */}
         <div
+          className="philosophy-separator"
           style={{
             width: "1px",
             height: "400px",
@@ -135,10 +138,13 @@ export default function Philosophy() {
           <Image
             src="/textures/can-philosophy.png"
             alt="Blue Vera Can"
-            width={400}
-            height={700}
+            width={320}
+            height={560}
             style={{
               objectFit: "contain",
+              width: "100%",
+              height: "auto",
+              maxWidth: "320px",
             }}
           />
         </motion.div>

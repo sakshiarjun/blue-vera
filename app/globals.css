@@ -34,3 +34,21 @@ body {
     padding: 10px;
   }
 }
+
+@media (max-width: 768px) {
+
+  #philosophy {
+    padding: 120px 24px !important;
+  }
+
+  #philosophy > div {
+    flex-direction: column !important;
+    gap: 40px !important;
+    text-align: center;
+  }
+
+  .philosophy-separator {
+    display: none;
+  }
+
+}
