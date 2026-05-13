@@ -1,9 +1,29 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect } from "react";
+
+const images = [
+  "/textures/can-philosophy.png",
+  "/textures/can-mobile.png",
+  "/textures/can-glow.png",
+];
 
 export default function Philosophy() {
+    const [index, setIndex] = useState(0);
+
+  // AUTO CHANGE
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prev) =>
+        prev === images.length - 1 ? 0 : prev + 1
+      );
+    }, 3500);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <section
         id="philosophy"
@@ -64,6 +84,7 @@ export default function Philosophy() {
               fontSize: "clamp(3rem, 6vw, 6rem)",
               fontWeight: 300,
               lineHeight: 1,
+              fontFamily: "var(--font-heading)",
             }}
           >
             No sugar.
@@ -120,26 +141,75 @@ export default function Philosophy() {
 
         {/* RIGHT SIDE */}
         <motion.div
+      animate={{
+        y: [0, -20, 0],
+      }}
+      transition={{
+        duration: 6,
+        repeat: Infinity,
+        ease: "easeInOut",
+      }}
+      style={{
+        flex: 1,
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        position: "relative",
+        minHeight: "700px",
+      }}
+    >
+      {/* GLOW */}
+      <motion.div
+        animate={{
+          scale: [1, 1.1, 1],
+          opacity: [0.15, 0.25, 0.15],
+        }}
+        transition={{
+          duration: 6,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        style={{
+          position: "absolute",
+          width: "320px",
+          height: "320px",
+          borderRadius: "999px",
+          background:
+            "radial-gradient(circle, rgba(42,51,118,0.15), transparent 70%)",
+          filter: "blur(60px)",
+        }}
+      />
+
+      {/* IMAGE CROSSFADE */}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={images[index]}
+          initial={{
+            opacity: 0,
+            scale: 0.96,
+          }}
           animate={{
-            y: [0, -20, 0],
-            rotate: [0, 2, 0, -2, 0],
+            opacity: 1,
+            scale: 1,
+          }}
+          exit={{
+            opacity: 0,
+            scale: 1.04,
           }}
           transition={{
-            duration: 6,
-            repeat: Infinity,
+            duration: 1.5,
             ease: "easeInOut",
           }}
           style={{
-            flex: 1,
-            display: "flex",
-            justifyContent: "center",
+            position: "absolute",
           }}
         >
           <Image
-            src="/textures/can-philosophy.png"
+            src={images[index]}
             alt="Blue Vera Can"
             width={320}
             height={560}
+            priority
             style={{
               objectFit: "contain",
               width: "100%",
@@ -148,6 +218,8 @@ export default function Philosophy() {
             }}
           />
         </motion.div>
+      </AnimatePresence>
+    </motion.div>
       </div>
     </section>
   );

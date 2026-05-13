@@ -1,6 +1,9 @@
 :root {
   --blue: #2a3376;
   --beige: #fffdef;
+  --font-heading: var(--font-nura-bold);
+  --font-nuraBold: var(--font-nura-bold);
+  --font-nuraThin: var(--font-nura-thin);
 }
 
 * {
@@ -27,6 +30,7 @@ section {
 h1 {
   font-size: 4rem;
   letter-spacing: -1px;
+  font-family: var(--font-nuraBold);
 }
 
 p {

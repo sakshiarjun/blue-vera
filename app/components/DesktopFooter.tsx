@@ -178,12 +178,6 @@ RIICO, Udaipur,
 Rajasthan 313003`}
             />
 
-            {/* MANUFACTURER */}
-            <FooterItem
-              label="Manufactured By"
-              value={`Panchgavya Food & Beverages Pvt. Ltd.
-Himachal Pradesh`}
-            />
           </motion.div>
         </div>
 

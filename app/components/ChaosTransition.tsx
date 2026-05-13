@@ -30,7 +30,7 @@ export default function ChaosTransition() {
       style={{
         position: "relative",
         minHeight: "200vh",
-        background: "#1a1f4d",
+        background: "#090e25",
       }}
     >
       {/* Sticky Container */}
@@ -38,12 +38,14 @@ export default function ChaosTransition() {
         style={{
           position: "sticky",
           top: 0,
-          height: "100vh",
+          height: "120vh",
+          width: "100%",
           overflow: "hidden",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          background: "#1a1f4d",
+          background: "#090e25",
+          marginTop: "-50vh", // Start with the section hidden and slide up
         }}
       >
         {/* Grain Overlay */}
@@ -62,6 +64,8 @@ export default function ChaosTransition() {
 
         {/* Floating Particles */}
         <Particles />
+        <Particles />
+        
 
         {/* Text Stack */}
         <div
@@ -135,11 +139,14 @@ function AnimatedLine({
           fontSize: index === lines.length - 1
             ? "clamp(3rem, 8vw, 6rem)"
             : "clamp(2rem, 5vw, 4rem)",          
-          fontWeight: index === 5 ? 700 : 300, // Make "Hydration. Without Distraction" bold
-          lineHeight: 1.1,
-          letterSpacing: "-2px",
+          fontWeight: index === 5 ? 800 : 300, // Make "Hydration. Without Distraction" bold
+          lineHeight: 1,
+          letterSpacing: "-1px",
           color: "#fffdef",
           whiteSpace: "normal", // Allow text to wrap to the next line
+          marginTop: index === 0 ? "50px" : "20px", // Add more spacing before the first line
+          //fontFamily: "var(--font-nura-thin)", // Use the bold font for all lines for consistency
+          
         }}
       >
         {line}

@@ -42,6 +42,7 @@ export default function Navbar() {
           alignItems: "center",
           zIndex: 1000,
           mixBlendMode: "difference",
+          
         }}
       >
         {/* LOGO */}

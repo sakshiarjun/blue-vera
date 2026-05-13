@@ -198,7 +198,7 @@ export default function DesktopProductShowcase() {
                   </h3>
 
                   <p style={{ opacity: 0.7, lineHeight: 1.6, marginBottom: "20px" }}>
-                    Naturally balanced minerals 
+                    From the Himalayn foothills.
                   </p>
                 </div>
 
