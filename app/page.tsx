@@ -12,6 +12,7 @@ import ProductShowcase from "./components/ProductShowcase";
 import Experience from "./components/Experience";
 import Footer from "./components/Footer";
 import Details from "./components/Details";
+import BuyNow from "./components/BuyNow";
 
 export default function Home() {
 
@@ -35,11 +36,12 @@ export default function Home() {
       ref={scrollRef}>
       <Navbar />
       <Hero />
-      <ChaosTransition />
+      <ChaosTransition /> 
       <Philosophy />
       <ProductShowcase />
       <Experience />
       <Details />
+      <BuyNow />
       <Footer />
     </div>
   );

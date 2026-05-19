@@ -136,7 +136,7 @@ export default function Navbar() {
             style={{
               position: "fixed",
               inset: 0,
-              background: "#2a3376",
+              background: "#050816",
               zIndex: 999,
               display: "flex",
               alignItems: "center",

@@ -1,81 +1,113 @@
 "use client";
 
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Environment, OrbitControls } from "@react-three/drei";
-import { useRef } from "react";
-import { useTexture } from "@react-three/drei";
+import {
+  Environment,
+  OrbitControls,
+  useGLTF,
+  useTexture,
+  Center,
+} from "@react-three/drei";
+
 import * as THREE from "three";
+import { useRef } from "react";
 
-function CanMesh() {
-  const meshRef = useRef<THREE.Mesh>(null!);
+function CanModel() {
+  const { scene } = useGLTF("/models/can.glb");
 
-  const texture = useTexture("/textures/can-texture.png");
+  const labelTexture = useTexture("/textures/can-texture-invert.png");
 
-  // Fix orientation (VERY IMPORTANT)
-  texture.wrapS = texture.wrapT= THREE.RepeatWrapping;
-  texture.repeat.x = -1; // Flip horizontally
-  texture.offset.x = 1; // Center the texture
-  texture.repeat.set(1, 1);
-  texture.rotation = Math.PI;
-  texture.center.set(0.5, 0.5);
-  texture.flipY = false;
-  texture.needsUpdate = true;
-
-  useFrame((state) => {
-    const t = state.clock.getElapsedTime();
-
-    meshRef.current.rotation.y = t * 0.4;
-    meshRef.current.position.y = Math.sin(t) * 0.1;
+  const groupRef = useRef<THREE.Group>(null!);
+  const targetRotation = useRef({
+  x: 0,
+  y: 0,
+  z: 0,
   });
+  const lastChange = useRef(0);
+
+  // Fix texture orientation
+  labelTexture.wrapS = THREE.RepeatWrapping;
+  labelTexture.repeat.x = -1;
+  labelTexture.offset.x = 1;
+  labelTexture.flipY = false;
+  labelTexture.colorSpace = THREE.SRGBColorSpace;
+  labelTexture.anisotropy = 16;
+
+  labelTexture.needsUpdate = true;  
+
+useFrame((state) => {
+  const t = state.clock.getElapsedTime();
+
+  // Floating movement
+  groupRef.current.position.y = Math.sin(t * 1.2) * 0.08;
+
+  // Organic rotation
+  groupRef.current.rotation.x =
+    Math.sin(t * 0.7) * 0.25;
+
+  groupRef.current.rotation.y =
+    t * 0.4;
+
+  groupRef.current.rotation.z =
+    Math.cos(t * 0.5) * 0.18;
+});
+
+  
+  // Traverse every mesh inside GLB
+  scene.traverse((child: any) => {
+  if (child.isMesh) {
+
+    // BODY
+    if (child.name === "Cube_1") {
+      child.material = new THREE.MeshPhysicalMaterial({
+        map: labelTexture,
+        metalness: 0.15,
+        roughness: 0.18,
+        clearcoat: 1,
+        clearcoatRoughness: 0.08,
+        envMapIntensity: 1.5,
+      });
+    }
+
+    // LID + TAB
+    if (child.name === "Cube") {
+      child.material = new THREE.MeshPhysicalMaterial({
+        color: "#d4d4d4",
+        metalness: 1,
+        roughness: 0.22,
+      });
+    }
+  }
+});
 
   return (
-    <group ref ={meshRef}>
-        <mesh>
-            <cylinderGeometry args={[1, 1, 3, 128]} />
-
-            <meshPhysicalMaterial
-                map={texture}        // 👈 THIS IS THE KEY
-                metalness={0.5}
-                roughness={0.25}
-                clearcoat={1}
-                clearcoatRoughness={0.1}
-            />
-        </mesh>
-
-        {/* Top Lid */}
-        <mesh position={[0, 1.5, 0]} rotation={[Math.PI / 2, 0, 0]}>
-            <circleGeometry args={[1, 64]} />
-            <meshStandardMaterial attach="material" color="grey" metalness={1} roughness={0.3} />
-        </mesh>
-
-        {/* Bottom Lid */}
-        <mesh position={[0, -1.5, 0]} rotation={[-Math.PI / 2, 0, 0]}>
-            <circleGeometry args={[1, 64]} />
-            <meshStandardMaterial attach="material" color="grey" metalness={1} roughness={0.3} />
-        </mesh>
+    <group ref={groupRef}>
+    <Center>
+    <primitive
+      object={scene}
+      scale={12}
+    />
+    </Center>
     </group>
   );
 }
 
 export default function ThreeCan() {
   return (
-    <div style={{ height: "100vh", width: "100%" }}>
-      <Canvas camera={{ position: [0, 0, 6], fov: 45 }}>
-        
-        {/* Lighting */}
-        <ambientLight intensity={0.2} />
-        <spotLight position={[5, 10, 5]} intensity={1} angle={0.3} />
-        {/* <directionalLight position={[5, 5, 5]} intensity={2} /> */}
+    <div style={{ width: "100%", height: "100vh" }}>
+      <Canvas camera={{ position: [0, 0, 4], fov: 30 }}>
+        <ambientLight intensity={1} />
 
-        {/* HDR Environment (IMPORTANT for reflections) */}
+        <directionalLight
+          position={[5, 5, 5]}
+          intensity={0.8}
+        />
+
         <Environment preset="city" />
 
-        {/* Can */}
-        <CanMesh />
+        <CanModel />
 
-        {/* Controls (disable zoom for production later) */}
-        <OrbitControls enableZoom={false} />
-
+        <OrbitControls enableZoom={false} enableRotate={true} enablePan={true} />
       </Canvas>
     </div>
   );

@@ -2,20 +2,52 @@
 
 import ThreeCan from "./ThreeCan";
 
+import {
+  motion,
+  useScroll,
+  useTransform,
+} from "framer-motion";
+
+
+
 export default function Hero() {
+
+  const { scrollYProgress } = useScroll();
+  const heroY = useTransform(
+  scrollYProgress,
+  [0, 0.3],
+  [0, -200]
+  );
+  const heroOpacity = useTransform(
+  scrollYProgress,
+  [0, 0.3], // Adjusted the range for smoother disappearance
+  [1, 0]
+  );
+
   return (
     <section 
         id="home"
         style={{ 
-          padding: 0,
-          background: "#090e25",
-          }}>
+          position: "relative",
+          height: "100vh",
+          background: "radial-gradient(circle at top right, rgba(42,51,118,0.35), #050816 60%)",
+          }}
+      >
+      
       <ThreeCan />
 
-      <div
+      <motion.div
         style={{
-          position: "absolute",
-          textAlign: "center",
+          position: "absolute", // Changed from fixed to absolute to allow scrolling out of view
+          inset: 0,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          zIndex: 10,
+          pointerEvents: "none",
+          y: heroY,
+          opacity: heroOpacity,
         }}
       >
         <h1
@@ -36,7 +68,9 @@ export default function Hero() {
         >
           Clarity is the new energy
         </p>
-      </div>
+      </motion.div>
+
+      
     </section>
   );
 }

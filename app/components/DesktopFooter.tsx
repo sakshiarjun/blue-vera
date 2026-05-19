@@ -57,7 +57,8 @@ export default function DesktopFooter() {
           position: "relative",
           zIndex: 2,
           width: "100%",
-          maxWidth: "1400px",
+          height: "100%",
+          maxWidth: "1200px", // Adjusted max width for desktop
           margin: "0 auto",
         }}
       >
@@ -100,6 +101,7 @@ export default function DesktopFooter() {
                 textTransform: "uppercase",
                 opacity: 0.5,
                 marginBottom: "24px",
+                marginTop: "28px",
               }}
             >
               Contact
@@ -155,6 +157,7 @@ export default function DesktopFooter() {
               display: "flex",
               flexDirection: "column",
               gap: "40px",
+              marginTop: "28px",
             }}
           >
             {/* EMAIL */}
@@ -177,7 +180,6 @@ Madri Industrial Area,
 RIICO, Udaipur,
 Rajasthan 313003`}
             />
-
           </motion.div>
         </div>
 
@@ -290,7 +292,7 @@ function FooterItem({
           height: "1px",
           background:
             "rgba(255,255,255,0.2)",
-          marginTop: "10px",
+          marginTop: "25px",
         }}
       />
     </motion.div>

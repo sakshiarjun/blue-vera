@@ -1,7 +1,7 @@
 "use client";
 
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Environment, useTexture } from "@react-three/drei";
+import { Environment, useTexture, useGLTF, Center } from "@react-three/drei";
 import {
   motion,
   AnimatePresence,
@@ -255,10 +255,11 @@ export default function DesktopProductShowcase() {
                   fontSize: "1rem",
                 }}
                 onClick={() => {
-                  const detailsSection = document.getElementById("details");
-                  if (detailsSection) {
-                    detailsSection.scrollIntoView({ behavior: "smooth" });
-                  }
+                  document
+                    .getElementById("buy-now")
+                    ?.scrollIntoView({
+                      behavior: "smooth",
+                  });
                 }}
               >
                 View Details
@@ -280,57 +281,97 @@ function CanModel({
 }: {
   isOpen: boolean;
 }) {
-  const meshRef = useRef<THREE.Group>(null!);
+  const groupRef = useRef<THREE.Group>(null!);
 
+  // LOAD REAL GLB MODEL
+  const { scene } = useGLTF("/models/can.glb");
+
+  // LABEL TEXTURE
   const texture = useTexture(
-    "/textures/can-texture.png"
+    "/textures/can-texture-invert.png"
   );
 
+  // TEXTURE SETTINGS
   texture.wrapS = THREE.RepeatWrapping;
   texture.repeat.x = -1;
   texture.offset.x = 1;
+
   texture.flipY = false;
 
+  texture.colorSpace = THREE.SRGBColorSpace;
+
+  texture.anisotropy = 16;
+
+  texture.needsUpdate = true;
+
+  // APPLY MATERIALS TO GLB
+  scene.traverse((child: any) => {
+    if (child.isMesh) {
+
+      child.castShadow = true;
+      child.receiveShadow = true;
+
+      // BODY
+      if (child.name === "Cube_1") {
+        child.material =
+          new THREE.MeshPhysicalMaterial({
+            map: texture,
+
+            metalness: 0.15,
+            roughness: 0.18,
+
+            clearcoat: 1,
+            clearcoatRoughness: 0.08,
+
+            envMapIntensity: 1.5,
+          });
+      }
+
+      // LID + TAB
+      if (child.name === "Cube") {
+        child.material =
+          new THREE.MeshPhysicalMaterial({
+            color: "#d4d4d4",
+
+            metalness: 1,
+            roughness: 0.22,
+          });
+      }
+    }
+  });
+
+  // ANIMATION
   useFrame((state) => {
     const t = state.clock.getElapsedTime();
 
-    // IDLE ROTATION
-    meshRef.current.rotation.y = t * 0.4;
+    // FLOAT
+    groupRef.current.position.y =
+      Math.sin(t * 1.2) * 0.08;
 
-    // FLOATING
-    meshRef.current.position.y =
-      Math.sin(t) * 0.1;
+    // ROTATION
+    groupRef.current.rotation.x =
+      Math.sin(t * 0.7) * 0.12;
 
-    // CLICK ZOOM ROTATION
+    groupRef.current.rotation.y =
+      t * 0.4;
+
+    groupRef.current.rotation.z =
+      Math.cos(t * 0.5) * 0.08;
+
+    // OPEN STATE EXTRA ROTATION
     if (isOpen) {
-      meshRef.current.rotation.y += 0.02;
+      groupRef.current.rotation.y += 0.01;
     }
   });
 
   return (
-    <group ref={meshRef}>
-      {/* BODY */}
-      <mesh>
-        <cylinderGeometry
-          args={[0.6, 0.6, 2, 128, 1, true]} // Reduced top and bottom radius from 1 to 0.8
+    <group ref={groupRef}>
+      <Center>
+        <primitive
+          object={scene}
+          scale={12}
         />
-
-        <meshPhysicalMaterial
-          map={texture}
-          metalness={0.9}
-          roughness={0.2}
-          clearcoat={1}
-          clearcoatRoughness={0.1}
-          envMapIntensity={1.5}
-        />
-      </mesh>
-
-      {/* TOP */}
-      
-
-      {/* BOTTOM */}
-      
-
+      </Center>
     </group>
   );
 }
