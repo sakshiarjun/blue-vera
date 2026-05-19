@@ -15,7 +15,7 @@ import { useRef } from "react";
 function CanModel() {
   const { scene } = useGLTF("/models/can.glb");
 
-  const labelTexture = useTexture("/textures/can-texture-invert.png");
+  const labelTexture = useTexture("/textures/can-simple-invert.png");
 
   const groupRef = useRef<THREE.Group>(null!);
   const targetRotation = useRef({
