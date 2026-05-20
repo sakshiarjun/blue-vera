@@ -12,6 +12,7 @@ export default function MobileFooter() {
         color: "#fffdef",
         overflow: "hidden",
         padding: "100px 24px 40px",
+        height: "100%",
       }}
     >
       {/* BACKGROUND TYPOGRAPHY */}
@@ -113,9 +114,9 @@ export default function MobileFooter() {
         <FooterItem
           label="Address"
           value={`173, 1st Floor,
-Madri Industrial Area,
-RIICO, Udaipur,
-Rajasthan 313003`}
+          Madri Industrial Area,
+          RIICO, Udaipur,
+          Rajasthan 313003`}
         />
 
         {/* DIVIDER */}

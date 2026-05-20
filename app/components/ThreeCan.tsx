@@ -10,7 +10,7 @@ import {
 } from "@react-three/drei";
 
 import * as THREE from "three";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 
 function CanModel() {
   const { scene } = useGLTF("/models/can.glb");
@@ -18,12 +18,21 @@ function CanModel() {
   const labelTexture = useTexture("/textures/can-simple-invert.png");
 
   const groupRef = useRef<THREE.Group>(null!);
-  const targetRotation = useRef({
-  x: 0,
-  y: 0,
-  z: 0,
-  });
-  const lastChange = useRef(0);
+
+  const [isMobile, setIsMobile] = useState(false);
+
+useEffect(() => {
+  const checkMobile = () => {
+    setIsMobile(window.innerWidth < 768);
+  };
+
+  checkMobile();
+
+  window.addEventListener("resize", checkMobile);
+
+  return () =>
+    window.removeEventListener("resize", checkMobile);
+}, []);
 
   // Fix texture orientation
   labelTexture.wrapS = THREE.RepeatWrapping;
@@ -85,7 +94,7 @@ useFrame((state) => {
     <Center>
     <primitive
       object={scene}
-      scale={12}
+      scale={isMobile ? 8 : 12}
     />
     </Center>
     </group>
