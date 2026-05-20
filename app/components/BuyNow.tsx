@@ -12,7 +12,7 @@ export default function BuyNow() {
         minHeight: "100vh",
         overflow: "hidden",
         background:
-          "radial-gradient(circle at center, rgba(42,51,118,0.22), #02050f 70%)",
+          "radial-gradient(circle at center, rgba(42,51,118,0.6), #050816 70%)", // Updated background to align with the rest of the app
 
         display: "flex",
         alignItems: "center",
@@ -41,24 +41,15 @@ export default function BuyNow() {
       >
         <h1
           style={{
-            fontFamily: "var(--font-nura-bold)",
-
             fontSize: "18vw",
-
             lineHeight: 0.85,
-
             color: "rgba(255,255,255,0.03)",
-
-            letterSpacing: "0.08em",
-
             textAlign: "center",
-
             userSelect: "none",
+            opacity: 0.3,
           }}
         >
-          BLUE
-          <br />
-          VERA
+          BLUEVERA
         </h1>
       </div>
 
@@ -102,16 +93,11 @@ export default function BuyNow() {
       <div
         style={{
           position: "relative",
-
           width: "100%",
-
           display: "grid",
           gridTemplateColumns: "1fr 1fr",
-
           alignItems: "center",
-
           gap: "4rem",
-
           zIndex: 5,
         }}
       >
@@ -139,14 +125,9 @@ export default function BuyNow() {
         >
           <p
             style={{
-              fontFamily: "var(--font-nura-bold)",
-
               fontSize: "0.9rem",
-
               letterSpacing: "0.4em",
-
               color: "rgba(255,255,255,0.45)",
-
               marginBottom: "2rem",
             }}
           >
@@ -155,34 +136,21 @@ export default function BuyNow() {
 
           <h2
             style={{
-              fontFamily: "var(--font-nura-bold)",
-
               fontSize: "clamp(3rem, 6vw, 6rem)",
-
               lineHeight: 0.9,
-
               color: "white",
-
               marginBottom: "2rem",
             }}
           >
-            Reset
-            <br />
-            In Chaos
+            Reset In Chaos
           </h2>
 
           <p
             style={{
-              fontFamily: "var(--font-nura)",
-
               fontSize: "1.05rem",
-
               lineHeight: 1.9,
-
               color: "rgba(255,255,255,0.72)",
-
               marginBottom: "3rem",
-
               maxWidth: "420px",
             }}
           >
@@ -203,25 +171,21 @@ export default function BuyNow() {
           >
             <span
               style={{
-                fontFamily: "var(--font-nura-bold)",
-
                 fontSize: "2rem",
 
                 color: "white",
               }}
             >
-              ₹99
+              ₹100
             </span>
 
             <span
               style={{
                 color: "rgba(255,255,255,0.45)",
-
                 fontSize: "0.95rem",
-
                 letterSpacing: "0.15em",
-
                 textTransform: "uppercase",
+                marginLeft: "2rem",
               }}
             >
               330ML
@@ -246,9 +210,6 @@ export default function BuyNow() {
               background: "white",
 
               color: "#02050f",
-
-              fontFamily: "var(--font-nura-bold)",
-
               fontSize: "0.95rem",
 
               letterSpacing: "0.18em",
@@ -263,7 +224,7 @@ export default function BuyNow() {
                 "0 10px 40px rgba(255,255,255,0.08)",
             }}
           >
-            Buy Now
+            place order
           </motion.button>
         </motion.div>
 
@@ -317,6 +278,7 @@ export default function BuyNow() {
           />
 
           {/* CAN */}
+          <ThreeCan />
           
         </motion.div>
       </div>

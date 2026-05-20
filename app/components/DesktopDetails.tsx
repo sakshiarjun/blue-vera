@@ -21,24 +21,6 @@ const details = [
     description:
       "Protected from light and external contamination through infinitely recyclable aluminum.",
   },
-  {
-    title: "Calcium",
-    value: "31.3 – 51.2",
-    description:
-      "Essential mineral contributing to balance and natural composition.",
-  },
-  {
-    title: "Magnesium",
-    value: "4.61 – 7.8",
-    description:
-      "Naturally present minerals selected for clarity and refreshment.",
-  },
-  {
-    title: "Bicarbonate",
-    value: "175 – 200",
-    description:
-      "Balanced mineral profile sourced from naturally composed water.",
-  },
 ];
 
 export default function DesktopDetails() {

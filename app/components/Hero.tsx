@@ -36,6 +36,29 @@ export default function Hero() {
       >
       <Particles />
       <ThreeCan />
+      {/* BACKGROUND TYPOGRAPHY */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          pointerEvents: "none",
+          userSelect: "none",
+        }}
+      >
+        <h1
+          style={{
+            fontSize: "18vw",
+            fontWeight: 700,
+            opacity: 0.03,
+            letterSpacing: "-12px",
+          }}
+        >
+          BLUEVERA
+        </h1>
+      </div>
       <motion.div
         style={{
           position: "absolute", // Changed from fixed to absolute to allow scrolling out of view

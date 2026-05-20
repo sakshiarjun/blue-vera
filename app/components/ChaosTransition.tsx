@@ -34,6 +34,7 @@ export default function ChaosTransition() {
         background: "#090e25",
       }}
     >
+      
       {/* Sticky Container */}
       <div
         style={{
@@ -49,6 +50,29 @@ export default function ChaosTransition() {
           marginTop: "-50vh", // Start with the section hidden and slide up
         }}
       >
+        {/* BACKGROUND TYPOGRAPHY */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          pointerEvents: "none",
+          userSelect: "none",
+        }}
+      >
+        <h1
+          style={{
+            fontSize: "18vw",
+            fontWeight: 700,
+            opacity: 0.03,
+            letterSpacing: "-12px",
+          }}
+        >
+          BLUEVERA
+        </h1>
+      </div>
         {/* Grain Overlay */}
         <motion.div
           style={{

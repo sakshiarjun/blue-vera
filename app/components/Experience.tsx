@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Particles from "./Particles";
 
 export default function Experience() {
   return (
@@ -15,36 +16,86 @@ export default function Experience() {
         justifyContent: "center",
       }}
     >
-      {/* BACKGROUND GLOW */}
+
+      {/* PARTICLES */}
+      <Particles />
+
+      {/* BACKGROUND TYPOGRAPHY */}
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          pointerEvents: "none",
+          userSelect: "none",
+        }}
+      >
+        <h1
+          style={{
+            fontSize: "18vw",
+            fontWeight: 700,
+            opacity: 0.02,
+            letterSpacing: "-12px",
+          }}
+        >
+          BLUEVERA
+        </h1>
+      </div>
+
+      {/* MOVING GRADIENT BACKGROUND */}
       <motion.div
         animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.15, 0.25, 0.15],
+          x: ["-100vw", "100vw", "-50vw", "50vw", "0"], // Randomized movement
+          y: ["-100vh", "100vh", "-50vh", "50vh", "0"],
         }}
         transition={{
-          duration: 10,
+          duration: 50,
           repeat: Infinity,
           ease: "easeInOut",
         }}
         style={{
           position: "absolute",
-          width: "700px",
-          height: "700px",
-          borderRadius: "999px",
-          background:
-            "radial-gradient(circle, rgba(42,51,118,0.6) 0%, transparent 70%)",
-          filter: "blur(120px)",
+          width: "600px",
+          height: "600px",
+          borderRadius: "50%",
+          background: "radial-gradient(circle, rgba(42,51,118,0.8) 0%, transparent 80%)", // Brighter
+          filter: "blur(100px)",
+          top: "10%",
+          left: "20%",
         }}
       />
 
-      {/* SECOND GLOW */}
       <motion.div
         animate={{
-          x: [-50, 50, -50],
-          y: [-30, 30, -30],
+          x: ["100vw", "-100vw", "50vw", "-50vw", "0"], // Randomized movement
+          y: ["100vh", "-100vh", "50vh", "-50vh", "0"],
         }}
         transition={{
-          duration: 14,
+          duration: 35,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        style={{
+          position: "absolute",
+          width: "400px",
+          height: "400px",
+          borderRadius: "50%",
+          background: "radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 80%)", // Brighter
+          filter: "blur(120px)",
+          bottom: "15%",
+          right: "10%",
+        }}
+      />
+
+      <motion.div
+        animate={{
+          x: ["-50vw", "50vw", "0", "100vw", "-100vw"], // Randomized movement
+          y: ["-50vh", "50vh", "0", "100vh", "-100vh"],
+        }}
+        transition={{
+          duration: 30,
           repeat: Infinity,
           ease: "easeInOut",
         }}
@@ -52,59 +103,11 @@ export default function Experience() {
           position: "absolute",
           width: "500px",
           height: "500px",
-          borderRadius: "999px",
-          background:
-            "radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%)",
-          filter: "blur(100px)",
-          right: "-100px",
-          top: "20%",
-        }}
-      />
-
-      {/* LIGHT SWEEP */}
-      <motion.div
-        animate={{
-          x: ["-120%", "120%"],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "linear",
-        }}
-        style={{
-          position: "absolute",
-          width: "30%",
-          height: "200%",
-          background:
-            "linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent)",
-          transform: "skewX(-20deg)",
-          filter: "blur(20px)",
-        }}
-      />
-
-      {/* PARTICLES */}
-      <Particles />
-
-      {/* GRAIN */}
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          opacity: 0.06,
-          mixBlendMode: "soft-light",
-          backgroundImage:
-            "url('https://grainy-gradients.vercel.app/noise.svg')",
-          pointerEvents: "none",
-        }}
-      />
-
-      {/* DARK OVERLAY */}
-      <div
-        style={{
-          position: "absolute",
-          inset: 0,
-          background:
-            "linear-gradient(to bottom, rgba(5,8,22,0.75), rgba(5,8,22,0.95))",
+          borderRadius: "50%",
+          background: "radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 80%)", // Brighter
+          filter: "blur(140px)",
+          top: "30%",
+          left: "50%",
         }}
       />
 
@@ -119,11 +122,20 @@ export default function Experience() {
         }}
       >
         {/* MAIN TEXT */}
-        <ReflectionText>
+        <motion.h1
+          style={{
+            fontSize: "clamp(3rem, 8vw, 7rem)",
+            lineHeight: 1,
+            letterSpacing: "-4px",
+            fontWeight: 300,
+            color: "#fffdef",
+            overflow: "hidden",
+          }}
+        >
           Hydration,
           <br />
           but make it a moment.
-        </ReflectionText>
+        </motion.h1>
 
         {/* SUBTEXT */}
         <motion.p
@@ -155,123 +167,59 @@ export default function Experience() {
           <br />
           usually happen after midnight.
         </motion.p>
-      </div>
-    </section>
-  );
-}
 
-/* =========================================
-   REFLECTION TEXT
-========================================= */
-
-function ReflectionText({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  return (
-    <motion.div
-      initial={{
-        opacity: 0,
-        y: 40,
-      }}
-      whileInView={{
-        opacity: 1,
-        y: 0,
-      }}
-      transition={{
-        duration: 1.2,
-      }}
-      viewport={{
-        once: true,
-      }}
-      whileHover="hover"
-      style={{
-        position: "relative",
-        display: "inline-block",
-      }}
-    >
-      <motion.h1
+        {/* GLASS BUTTON */}
+      <motion.button
+        whileHover={{
+          scale: 1.05,
+        }}
+        whileTap={{
+          scale: 0.95,
+        }}
+        onClick={() => {
+          window.location.href = "/product"; // Redirect to /product
+        }}
         style={{
-          position: "relative",
-          fontSize: "clamp(3rem, 8vw, 7rem)",
-          lineHeight: 1,
-          letterSpacing: "-4px",
-          fontWeight: 300,
+          padding: "1rem 3rem",
+          borderRadius: "999px",
+          border: "1px solid rgba(255, 255, 255, 0.2)",
+          background: "rgba(255, 255, 255, 0.1)", // Glass effect
+          backdropFilter: "blur(10px)", // Glass effect
           color: "#fffdef",
-          overflow: "hidden",
+          fontSize: "1rem",
+          letterSpacing: "0.1em",
+          textTransform: "uppercase",
+          cursor: "pointer",
+          transition: "all 0.3s ease",
+          boxShadow: "0 4px 15px rgba(0, 0, 0, 0.2)",
+          marginTop: "5rem", // Add spacing
         }}
       >
-        {children}
+        Experience Blue Vera
+      </motion.button>
 
-        {/* LIGHT REFLECTION */}
-        <motion.div
-          variants={{
-            hover: {
-              x: ["-150%", "150%"],
-            },
-          }}
-          transition={{
-            duration: 1.4,
-            ease: "easeInOut",
-          }}
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            width: "40%",
-            height: "100%",
-            background:
-              "linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent)",
-            transform: "skewX(-20deg)",
-            pointerEvents: "none",
-          }}
-        />
-      </motion.h1>
-    </motion.div>
-  );
-}
+       
 
-/* =========================================
-   PARTICLES
-========================================= */
+      </div>
 
-function Particles() {
-  const particles = Array.from({ length: 25 });
+      
 
-  return (
-    <div
-      style={{
-        position: "relative",
-        inset: 0,
-        overflow: "hidden",
-      }}
-    >
-      {particles.map((_, i) => (
-        <motion.div
-          key={i}
-          animate={{
-            y: [-20, -120],
-            opacity: [0, 0.4, 0],
-          }}
-          transition={{
-            duration: 8 + i,
-            repeat: Infinity,
-            ease: "linear",
-            delay: i * 0.3,
-          }}
-          style={{
-            position: "relative",
-            left: `${(i * 4) % 100}%`,
-            bottom: "-20px",
-            width: `${2 + (i % 3)}px`,
-            height: `${2 + (i % 3)}px`,
-            borderRadius: "999px",
-            background: "rgba(255,255,255,0.3)",
-            filter: "blur(1px)",
-          }}
-        />
-      ))}
-    </div>
+      {/* BOTTOM CONTENT */}
+      <div
+        style={{
+          position: "absolute",
+          bottom: "10px", // Positioned slightly above the bottom divider
+          left: "50%",
+          transform: "translateX(-50%)",
+          textAlign: "center",
+          color: "#fffdef",
+          fontSize: "0.9rem",
+          opacity: 0.7,
+        }}
+      >
+        © 2026 BlueVera. All rights reserved.
+      </div>
+
+    </section>
   );
 }

@@ -103,23 +103,26 @@ export default function DesktopProductShowcase() {
             initial={{ opacity: 0}}
             whileInView={{ opacity: 1 }}
             transition={{ delay: 0.6 }}
-                whileHover={{
-                  scale: 1.03,
+            whileHover={{
+                  scale: 1.2,
                 }}
-                whileTap={{
+            whileTap={{
                   scale: 0.98,
                 }}
-                style={{
-                  marginTop: "40px",
-                  padding: "16px 28px",
-                  background: "#fffdef",
-                  color: "#2a3376",
-                  border: "none",
-                  borderRadius: "999px",
-                  cursor: "pointer",
-                  fontWeight: 500,
-                  fontSize: "1rem",
-                }}
+            style={{
+              marginTop: "40px",
+              padding: "16px 28px",
+              background: "rgba(255, 255, 255, 0.2)", // Glass effect background
+              color: "#fffdef",
+              border: "1px solid rgba(255, 255, 255, 0.3)", // Subtle border for glass effect
+              borderRadius: "999px",
+              cursor: "pointer",
+              fontWeight: 600,
+              fontSize: "1rem",
+              backdropFilter: "blur(10px)", // Blur effect for glass appearance
+              boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)", // Soft shadow for depth
+              height: "60px",
+            }}
                 onClick={() => {
                   window.location.href = "/buy-now"; // Navigate to /buy-now
                 }}
@@ -159,7 +162,7 @@ export default function DesktopProductShowcase() {
             />
 
             {/* REFLECTION ENVIRONMENT */}
-            <Environment preset="warehouse" />
+            <Environment preset="city" />
 
             {/* 3D CAN */}
             <CanModel isOpen={isOpen} />
