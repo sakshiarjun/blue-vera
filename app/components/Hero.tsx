@@ -78,6 +78,7 @@ export default function Hero() {
             fontFamily: "var(--font-nura-bold)",
             letterSpacing: "2px",
             color: "#fff",
+            textAlign: "center"
           }}
         >
           RESET IN CHAOS
@@ -87,6 +88,7 @@ export default function Hero() {
             fontFamily: "var(--font-nura)",
             color: "#fff",
             letterSpacing: "2px",
+            textAlign: "center"
           }}
         >
           Clarity is the new energy
