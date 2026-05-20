@@ -6,18 +6,20 @@ import {
   AnimatePresence,
 } from "framer-motion";
 
+import Link from "next/link";
+
 const menuItems = [
   {
     name: "Home",
-    href: "#home",
+    href: "/",
   },
   {
     name: "Philosophy",
-    href: "#philosophy",
+    href: "/philosophy",
   },
   {
     name: "Product",
-    href: "#product",
+    href: "/product",
   },
   {
     name: "Contact",
@@ -171,44 +173,52 @@ export default function Navbar() {
               }}
             >
               {menuItems.map((item, index) => (
-                <motion.a
+                <Link
                   key={item.name}
                   href={item.href}
-                  initial={{
-                    opacity: 0,
-                    y: 40,
-                  }}
-                  animate={{
-                    opacity: 1,
-                    y: 0,
-                  }}
-                  exit={{
-                    opacity: 0,
-                    y: 40,
-                  }}
-                  transition={{
-                    delay: index * 0.08,
-                    duration: 0.5,
-                  }}
-                  whileHover={{
-                    x: 20,
-                    opacity: 0.7,
-                  }}
                   onClick={() => setIsOpen(false)}
                   style={{
                     textDecoration: "none",
-                    color: "#fffdef",
-                    fontSize: "clamp(3rem, 8vw, 7rem)",
-                    fontWeight: 300,
-                    lineHeight: 1,
-                    letterSpacing: "-4px",
-                    transition: "0.3s ease",
                   }}
                 >
-                  {item.name}
-                </motion.a>
+                  <motion.div
+                    initial={{
+                      opacity: 0,
+                      y: 40,
+                    }}
+                    animate={{
+                      opacity: 1,
+                      y: 0,
+                    }}
+                    exit={{
+                      opacity: 0,
+                      y: 50,
+                    }}
+                    transition={{
+                      delay: index * 0.1,
+                      duration: 0.5,
+                    }}
+                    whileHover={{
+                      x: 20,
+                      opacity: 0.7,
+                    }}
+                    style={{
+                      color: "#fffdef",
+                      fontSize: "clamp(3rem, 8vw, 7rem)",
+                      fontWeight: 300,
+                      lineHeight: 1,
+                      letterSpacing: "-4px",
+                      transition: "0.3s ease",
+                      cursor: "pointer",
+                    }}
+                  >
+                    {item.name}
+                  </motion.div>
+                  
+                </Link>
               ))}
             </div>
+                
 
             {/* BOTTOM INFO */}
             <motion.div

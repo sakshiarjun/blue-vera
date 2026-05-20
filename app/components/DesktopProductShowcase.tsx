@@ -98,6 +98,35 @@ export default function DesktopProductShowcase() {
           >
             Created for moments that demand clarity.
           </motion.p>
+
+          <motion.button
+            initial={{ opacity: 0}}
+            whileInView={{ opacity: 1 }}
+            transition={{ delay: 0.6 }}
+                whileHover={{
+                  scale: 1.03,
+                }}
+                whileTap={{
+                  scale: 0.98,
+                }}
+                style={{
+                  marginTop: "40px",
+                  padding: "16px 28px",
+                  background: "#fffdef",
+                  color: "#2a3376",
+                  border: "none",
+                  borderRadius: "999px",
+                  cursor: "pointer",
+                  fontWeight: 500,
+                  fontSize: "1rem",
+                }}
+                onClick={() => {
+                  window.location.href = "/buy-now"; // Navigate to /buy-now
+                }}
+              >
+                BUY NOW
+              </motion.button>
+
         </div>
 
         {/* CENTER CAN */}
@@ -236,34 +265,6 @@ export default function DesktopProductShowcase() {
                 </div>
               </div>
 
-              <motion.button
-                whileHover={{
-                  scale: 1.03,
-                }}
-                whileTap={{
-                  scale: 0.98,
-                }}
-                style={{
-                  marginTop: "40px",
-                  padding: "16px 28px",
-                  background: "#fffdef",
-                  color: "#2a3376",
-                  border: "none",
-                  borderRadius: "999px",
-                  cursor: "pointer",
-                  fontWeight: 500,
-                  fontSize: "1rem",
-                }}
-                onClick={() => {
-                  document
-                    .getElementById("buy-now")
-                    ?.scrollIntoView({
-                      behavior: "smooth",
-                  });
-                }}
-              >
-                View Details
-              </motion.button>
             </motion.div>
           )}
         </AnimatePresence>
@@ -288,7 +289,7 @@ function CanModel({
 
   // LABEL TEXTURE
   const texture = useTexture(
-    "/textures/can-texture-invert.png"
+    "/textures/can-simple-invert.png"
   );
 
   // TEXTURE SETTINGS
@@ -369,7 +370,7 @@ function CanModel({
       <Center>
         <primitive
           object={scene}
-          scale={12}
+          scale={14}
         />
       </Center>
     </group>

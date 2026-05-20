@@ -1,6 +1,7 @@
 "use client";
 
 import ThreeCan from "./ThreeCan";
+import Particles from "./Particles";
 
 import {
   motion,
@@ -33,9 +34,8 @@ export default function Hero() {
           background: "radial-gradient(circle at top right, rgba(42,51,118,0.35), #050816 60%)",
           }}
       >
-      
+      <Particles />
       <ThreeCan />
-
       <motion.div
         style={{
           position: "absolute", // Changed from fixed to absolute to allow scrolling out of view

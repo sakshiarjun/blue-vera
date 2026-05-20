@@ -3,20 +3,20 @@
 import { useEffect, useRef } from "react";
 import LocomotiveScroll from "locomotive-scroll";
 import "locomotive-scroll/dist/locomotive-scroll.css"; // Import styles
+import { useScroll } from "framer-motion";
 
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import ChaosTransition from "./components/ChaosTransition";
 import Philosophy from "./components/Philosophy";
-import ProductShowcase from "./components/ProductShowcase";
 import Experience from "./components/Experience";
 import Footer from "./components/Footer";
 import Details from "./components/Details";
-import BuyNow from "./components/BuyNow";
 
 export default function Home() {
 
   const scrollRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll();
 
   useEffect(() => {
   if (!scrollRef.current) return;
@@ -34,15 +34,16 @@ export default function Home() {
   return (
     <div data-scroll-container
       ref={scrollRef}>
-      <Navbar />
+        <Navbar />
+       
+      
       <Hero />
       <ChaosTransition /> 
       <Philosophy />
-      <ProductShowcase />
-      <Experience />
-      <Details />
-      <BuyNow />
+      
       <Footer />
+      <Details />
+      <Experience />
     </div>
   );
 }

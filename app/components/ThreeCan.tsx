@@ -94,7 +94,7 @@ useFrame((state) => {
 
 export default function ThreeCan() {
   return (
-    <div style={{ width: "100%", height: "100vh" }}>
+    <div style={{ width: "100%", height: "100%" }}>
       <Canvas camera={{ position: [0, 0, 4], fov: 30 }}>
         <ambientLight intensity={1} />
 
