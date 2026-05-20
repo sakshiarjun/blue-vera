@@ -40,10 +40,9 @@ export default function Home() {
       <Hero />
       <ChaosTransition /> 
       <Philosophy />
-      
-      <Footer />
-      <Details />
       <Experience />
+      <Footer />
+      
     </div>
   );
 }

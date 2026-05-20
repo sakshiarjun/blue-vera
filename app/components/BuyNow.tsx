@@ -1,18 +1,87 @@
 "use client";
 
 import { motion } from "framer-motion";
-import ThreeCan from "./ThreeCan";
+import { useState } from "react";
+//import { supabase } from "@/lib/supabase";
 
-export default function BuyNow() {
+export default function ResetClub() {
+  const [email, setEmail] = useState("");
+
+  const [loading, setLoading] = useState(false);
+
+  const [success, setSuccess] = useState(false);
+
+  const [errorMessage, setErrorMessage] = useState("");
+
+  /*async function handleSubmit(
+    e: React.FormEvent
+  ) {
+    e.preventDefault();
+
+    setLoading(true);
+
+    setErrorMessage("");
+
+     const { error } = await supabase
+       .from("reset_club_emails")
+       .insert([
+         {
+           email,
+          },
+      ]);
+
+    setLoading(false);
+
+    if (error) {
+      // Duplicate email
+      if (
+        error.message.includes("duplicate")
+      ) {
+        setErrorMessage(
+          "You're already part of the club."
+        );
+      } else {
+        setErrorMessage(
+          "Something went wrong."
+        );
+      }
+
+      return;
+    }
+
+    setSuccess(true);
+
+    setEmail("");
+  }*/
+
+    async function handleSubmit(
+    e: React.FormEvent
+  ) {
+    e.preventDefault();
+
+    setLoading(true);
+
+    setErrorMessage("");
+
+    // Simulate API call delay
+    setTimeout(() => {
+      setLoading(false);
+      setSuccess(true);
+      setEmail("");
+    }, 1500);
+  }
+
   return (
     <section
-      id="buy-now"
       style={{
         position: "relative",
+
         minHeight: "100vh",
+
         overflow: "hidden",
+
         background:
-          "radial-gradient(circle at center, rgba(42,51,118,0.6), #050816 70%)", // Updated background to align with the rest of the app
+          "radial-gradient(circle at top right, rgba(42,51,118,0.28), #02050f 70%)",
 
         display: "flex",
         alignItems: "center",
@@ -21,9 +90,9 @@ export default function BuyNow() {
         padding: "6rem 8vw",
       }}
     >
-      {/* ========================================= */}
+      {/* ====================================== */}
       {/* BACKGROUND TYPOGRAPHY */}
-      {/* ========================================= */}
+      {/* ====================================== */}
 
       <div
         style={{
@@ -36,26 +105,35 @@ export default function BuyNow() {
 
           pointerEvents: "none",
 
+          userSelect: "none",
+
           zIndex: 0,
         }}
       >
         <h1
           style={{
+
             fontSize: "18vw",
+
             lineHeight: 0.85,
-            color: "rgba(255,255,255,0.03)",
+
             textAlign: "center",
-            userSelect: "none",
-            opacity: 0.3,
+
+            color:
+              "rgba(255,255,255,0.03)",
+
+            letterSpacing: "0.08em",
           }}
         >
-          BLUEVERA
+          COMING
+          <br />
+          SOON
         </h1>
       </div>
 
-      {/* ========================================= */}
+      {/* ====================================== */}
       {/* ATMOSPHERIC GLOW */}
-      {/* ========================================= */}
+      {/* ====================================== */}
 
       <motion.div
         animate={{
@@ -75,217 +153,255 @@ export default function BuyNow() {
 
           borderRadius: "50%",
 
-          background: "rgba(42,51,118,0.25)",
+          background:
+            "rgba(42,51,118,0.24)",
 
           filter: "blur(140px)",
 
-          right: "-10%",
           top: "-10%",
+          right: "-10%",
 
           zIndex: 0,
         }}
       />
 
-      {/* ========================================= */}
+      {/* ====================================== */}
       {/* CONTENT */}
-      {/* ========================================= */}
+      {/* ====================================== */}
 
-      <div
+      <motion.div
+        initial={{
+          opacity: 0,
+          y: 60,
+        }}
+        whileInView={{
+          opacity: 1,
+          y: 0,
+        }}
+        transition={{
+          duration: 1,
+          ease: "easeOut",
+        }}
+        viewport={{ once: true }}
         style={{
           position: "relative",
-          width: "100%",
-          display: "grid",
-          gridTemplateColumns: "1fr 1fr",
-          alignItems: "center",
-          gap: "4rem",
+
           zIndex: 5,
+
+          width: "100%",
+          maxWidth: "720px",
+
+          textAlign: "center",
         }}
       >
-        {/* ===================================== */}
-        {/* LEFT CONTENT */}
-        {/* ===================================== */}
+        {/* TITLE */}
 
-        <motion.div
-          initial={{
-            opacity: 0,
-            y: 60,
-          }}
-          whileInView={{
-            opacity: 1,
-            y: 0,
-          }}
-          transition={{
-            duration: 1,
-            ease: "easeOut",
-          }}
-          viewport={{ once: true }}
+        <h2
           style={{
-            maxWidth: "520px",
+            fontSize:
+              "clamp(3rem, 8vw, 7rem)",
+
+            lineHeight: 0.9,
+            color: "white",
+            letterSpacing: "-0.02em",
+            marginBottom: "2rem",
+            fontWeight: 350,
+            textTransform: "uppercase",
           }}
         >
-          <p
-            style={{
-              fontSize: "0.9rem",
-              letterSpacing: "0.4em",
-              color: "rgba(255,255,255,0.45)",
-              marginBottom: "2rem",
-            }}
-          >
-            BLUE VERA
-          </p>
+          Join The
+          <br />
+          Reset Club
+        </h2>
 
-          <h2
-            style={{
-              fontSize: "clamp(3rem, 6vw, 6rem)",
-              lineHeight: 0.9,
-              color: "white",
-              marginBottom: "2rem",
-            }}
-          >
-            Reset In Chaos
-          </h2>
+        {/* SUBTEXT */}
 
-          <p
-            style={{
-              fontSize: "1.05rem",
-              lineHeight: 1.9,
-              color: "rgba(255,255,255,0.72)",
-              marginBottom: "3rem",
-              maxWidth: "420px",
-            }}
-          >
-            Natural mineral water preserved in infinitely
-            recyclable aluminum. Created for moments that
-            demand clarity.
-          </p>
+        <p
+          style={{
 
-          {/* PRICE */}
-          <div
+            fontSize: "1.05rem",
+
+            lineHeight: 1.9,
+
+            color:
+              "rgba(255,255,255,0.72)",
+
+            maxWidth: "520px",
+
+            margin:
+              "0 auto 4rem auto",
+          }}
+        >
+          For those choosing clarity
+          over chaos.
+        </p>
+
+        {/* ====================================== */}
+        {/* FORM */}
+        {/* ====================================== */}
+
+        {!success ? (
+          <form
+            onSubmit={handleSubmit}
             style={{
               display: "flex",
-              alignItems: "center",
-              gap: "1rem",
+              flexDirection: "column",
+              gap: "1.5rem",
 
-              marginBottom: "3rem",
+              width: "100%",
+              maxWidth: "520px",
+
+              margin: "0 auto",
             }}
           >
-            <span
+            {/* INPUT */}
+
+            <input
+              type="email"
+              required
+              placeholder="Enter your email"
+              value={email}
+              onChange={(e) =>
+                setEmail(e.target.value)
+              }
               style={{
-                fontSize: "2rem",
+                width: "100%",
+
+                padding:
+                  "1.3rem 1.5rem",
+
+                borderRadius: "999px",
+
+                border:
+                  "1px solid rgba(255,255,255,0.08)",
+
+                background:
+                  "rgba(255,255,255,0.04)",
+
+                backdropFilter:
+                  "blur(12px)",
 
                 color: "white",
-              }}
-            >
-              ₹100
-            </span>
 
-            <span
+                fontSize: "1rem",
+
+                outline: "none",
+
+                transition:
+                  "all 0.3s ease",
+              }}
+            />
+
+            {/* BUTTON */}
+
+            <motion.button
+              whileHover={{
+                scale: 1.03,
+              }}
+              whileTap={{
+                scale: 0.98,
+              }}
+              type="submit"
+              disabled={loading}
               style={{
-                color: "rgba(255,255,255,0.45)",
+                padding:
+                  "1.2rem 2.5rem",
+
+                borderRadius: "999px",
+
+                border:
+                  "1px solid rgba(255,255,255,0.08)",
+
+                background: "white",
+
+                color: "#02050f",
+
+
                 fontSize: "0.95rem",
-                letterSpacing: "0.15em",
-                textTransform: "uppercase",
-                marginLeft: "2rem",
+
+                letterSpacing: "0.18em",
+
+                textTransform:
+                  "uppercase",
+
+                cursor: "pointer",
+
+                transition:
+                  "all 0.3s ease",
+
+                boxShadow:
+                  "0 10px 40px rgba(255,255,255,0.08)",
               }}
             >
-              330ML
-            </span>
-          </div>
+              {loading
+                ? "Requesting..."
+                : "Request Access"}
+            </motion.button>
 
-          {/* BUY BUTTON */}
-          <motion.button
-            whileHover={{
-              scale: 1.04,
+            {/* ERROR */}
+
+            {errorMessage && (
+              <p
+                style={{
+                  color:
+                    "rgba(255,255,255,0.55)",
+
+                  fontSize: "0.95rem",
+
+                  marginTop: "1rem",
+                }}
+              >
+                {errorMessage}
+              </p>
+            )}
+          </form>
+        ) : (
+          /* SUCCESS STATE */
+          <motion.div
+            initial={{
+              opacity: 0,
+              y: 20,
             }}
-            whileTap={{
-              scale: 0.98,
+            animate={{
+              opacity: 1,
+              y: 0,
             }}
-            style={{
-              padding: "1rem 2.8rem",
-
-              borderRadius: "999px",
-
-              border: "1px solid rgba(255,255,255,0.12)",
-
-              background: "white",
-
-              color: "#02050f",
-              fontSize: "0.95rem",
-
-              letterSpacing: "0.18em",
-
-              textTransform: "uppercase",
-
-              cursor: "pointer",
-
-              transition: "all 0.3s ease",
-
-              boxShadow:
-                "0 10px 40px rgba(255,255,255,0.08)",
+            transition={{
+              duration: 0.8,
             }}
           >
-            place order
-          </motion.button>
-        </motion.div>
+            <h3
+              style={{
+                fontSize:
+                  "clamp(2rem, 5vw, 4rem)",
 
-        {/* ===================================== */}
-        {/* RIGHT CONTENT */}
-        {/* ===================================== */}
+                color: "white",
+                textTransform: "uppercase",
+                fontWeight: 350,
+                marginBottom: "1rem",
+              }}
+            >
+              Welcome to clarity.
+            </h3>
 
-        <motion.div
-          initial={{
-            opacity: 0,
-            scale: 0.9,
-          }}
-          whileInView={{
-            opacity: 1,
-            scale: 1,
-          }}
-          transition={{
-            duration: 1.2,
-            ease: "easeOut",
-          }}
-          viewport={{ once: true }}
-          style={{
-            position: "relative",
+            <p
+              style={{
+                color:
+                  "rgba(255,255,255,0.65)",
 
-            width: "100%",
-            height: "85vh",
+                fontSize: "1rem",
+              }}
+            >
+              Your access request has
+              been received.
+            </p>
+          </motion.div>
+        )}
+      </motion.div>
 
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          {/* Reflection streak */}
-          <div
-            style={{
-              position: "absolute",
-
-              width: "180px",
-              height: "70%",
-
-              background:
-                "linear-gradient(to bottom, transparent, rgba(255,255,255,0.08), transparent)",
-
-              filter: "blur(35px)",
-
-              left: "50%",
-              transform: "translateX(-50%)",
-
-              zIndex: 0,
-            }}
-          />
-
-          {/* CAN */}
-          <ThreeCan />
-          
-        </motion.div>
-      </div>
-
-      {/* ========================================= */}
+      {/* ====================================== */}
       {/* BOTTOM FADE */}
-      {/* ========================================= */}
+      {/* ====================================== */}
 
       <div
         style={{
